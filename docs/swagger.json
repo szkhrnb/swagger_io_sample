@@ -1,0 +1,1258 @@
+{
+  "swagger": "2.0",
+  "info": {
+    "title": "API V1",
+    "version": "v1"
+  },
+  "paths": {
+    "/api/v1/articles/categories": {
+      "get": {
+        "summary": "カテゴリ一覧を取得します",
+        "tags": [
+          "Article"
+        ],
+        "consumes": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "Authorization",
+            "in": "header",
+            "type": "string"
+          },
+          {
+            "name": "identify",
+            "in": "query",
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "カテゴリ一覧が返却されます",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "article_categories": {
+                  "type": "array",
+                  "items": {
+                    "type": "object",
+                    "properties": {
+                      "name": {
+                        "type": "string"
+                      },
+                      "eng_name": {
+                        "type": "string"
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      },
+      "post": {
+        "summary": "カテゴリを新規作成します",
+        "tags": [
+          "Article"
+        ],
+        "consumes": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "Authorization",
+            "in": "header",
+            "type": "string"
+          },
+          {
+            "name": "identify",
+            "in": "query",
+            "type": "string",
+            "example": "testsite"
+          },
+          {
+            "name": "article_category",
+            "in": "body",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "name": {
+                  "type": "string",
+                  "example": "カテゴリ名"
+                },
+                "eng_name": {
+                  "type": "string",
+                  "example": "category1"
+                }
+              }
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "作成したカテゴリが返却されます"
+          }
+        }
+      }
+    },
+    "/api/v1/articles/categories/{id}": {
+      "put": {
+        "summary": "カテゴリを更新します",
+        "tags": [
+          "Article"
+        ],
+        "consumes": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "Authorization",
+            "in": "header",
+            "type": "string"
+          },
+          {
+            "name": "identify",
+            "in": "query",
+            "type": "string",
+            "example": "testsite"
+          },
+          {
+            "name": "id",
+            "in": "path",
+            "type": "integer",
+            "required": true
+          },
+          {
+            "name": "article_category",
+            "in": "body",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "name": {
+                  "type": "string",
+                  "example": "編集カテゴリ"
+                },
+                "eng_name": {
+                  "type": "string",
+                  "example": "category2"
+                }
+              }
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "編集したカテゴリが返却されます"
+          }
+        }
+      },
+      "delete": {
+        "summary": "カテゴリを削除します",
+        "tags": [
+          "Article"
+        ],
+        "consumes": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "Authorization",
+            "in": "header",
+            "type": "string"
+          },
+          {
+            "name": "identify",
+            "in": "query",
+            "type": "string",
+            "example": "testsite"
+          },
+          {
+            "name": "id",
+            "in": "path",
+            "type": "integer",
+            "required": true
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "削除結果が返却されます"
+          }
+        }
+      }
+    },
+    "/api/v1/articles/images": {
+      "post": {
+        "summary": "画像をアップロードします",
+        "tags": [
+          "Article"
+        ],
+        "consumes": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "Authorization",
+            "in": "header",
+            "type": "string"
+          },
+          {
+            "name": "identify",
+            "in": "query",
+            "type": "string",
+            "example": "testsite"
+          },
+          {
+            "name": "json_data",
+            "in": "body",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "image": {
+                  "type": "string",
+                  "format": "byte",
+                  "example": "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAUAAAAFCAYAAACNbyblAAAABGdBTUEAALGPC/xhBQAAACBjSFJNAAB6JgAAgIQAAPoAAACA6AAAdTAAAOpgAAA6mAAAF3CculE8AAAACXBIWXMAAAsTAAALEwEAmpwYAAABWWlUWHRYTUw6Y29tLmFkb2JlLnhtcAAAAAAAPHg6eG1wbWV0YSB4bWxuczp4PSJhZG9iZTpuczptZXRhLyIgeDp4bXB0az0iWE1QIENvcmUgNS40LjAiPgogICA8cmRmOlJERiB4bWxuczpyZGY9Imh0dHA6Ly93d3cudzMub3JnLzE5OTkvMDIvMjItcmRmLXN5bnRheC1ucyMiPgogICAgICA8cmRmOkRlc2NyaXB0aW9uIHJkZjphYm91dD0iIgogICAgICAgICAgICB4bWxuczp0aWZmPSJodHRwOi8vbnMuYWRvYmUuY29tL3RpZmYvMS4wLyI+CiAgICAgICAgIDx0aWZmOk9yaWVudGF0aW9uPjE8L3RpZmY6T3JpZW50YXRpb24+CiAgICAgIDwvcmRmOkRlc2NyaXB0aW9uPgogICA8L3JkZjpSREY+CjwveDp4bXBtZXRhPgpMwidZAAAAaklEQVQIHWP89ubb/5UL/jNcOMzAYOLEwBASy8jAsKD3638Ghi//Q7kh9LIpX/8znT/EwBDKzcjApcbAEMzAwHDhGAMDk4kjA8NqoKLP5xkY1gIFje0YGBi/v/v2f/0yoJlAFSCBgAhGBgAfDihHi1Ng5QAAAABJRU5ErkJggg=="
+                }
+              }
+            },
+            "required": [
+              "image"
+            ]
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "アップロードした画像URLが返却されます"
+          }
+        }
+      }
+    },
+    "/api/v1/articles/previews": {
+      "post": {
+        "summary": "画像をアップロードします",
+        "tags": [
+          "Article"
+        ],
+        "consumes": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "Authorization",
+            "in": "header",
+            "type": "string"
+          },
+          {
+            "name": "identify",
+            "in": "query",
+            "type": "string",
+            "example": "testsite"
+          },
+          {
+            "name": "json_data",
+            "in": "body",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "article_eyecatch": {
+                  "type": "object",
+                  "properties": {
+                    "file": {
+                      "type": "string",
+                      "format": "byte",
+                      "example": "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAUAAAAFCAYAAACNbyblAAAABGdBTUEAALGPC/xhBQAAACBjSFJNAAB6JgAAgIQAAPoAAACA6AAAdTAAAOpgAAA6mAAAF3CculE8AAAACXBIWXMAAAsTAAALEwEAmpwYAAABWWlUWHRYTUw6Y29tLmFkb2JlLnhtcAAAAAAAPHg6eG1wbWV0YSB4bWxuczp4PSJhZG9iZTpuczptZXRhLyIgeDp4bXB0az0iWE1QIENvcmUgNS40LjAiPgogICA8cmRmOlJERiB4bWxuczpyZGY9Imh0dHA6Ly93d3cudzMub3JnLzE5OTkvMDIvMjItcmRmLXN5bnRheC1ucyMiPgogICAgICA8cmRmOkRlc2NyaXB0aW9uIHJkZjphYm91dD0iIgogICAgICAgICAgICB4bWxuczp0aWZmPSJodHRwOi8vbnMuYWRvYmUuY29tL3RpZmYvMS4wLyI+CiAgICAgICAgIDx0aWZmOk9yaWVudGF0aW9uPjE8L3RpZmY6T3JpZW50YXRpb24+CiAgICAgIDwvcmRmOkRlc2NyaXB0aW9uPgogICA8L3JkZjpSREY+CjwveDp4bXBtZXRhPgpMwidZAAAAaklEQVQIHWP89ubb/5UL/jNcOMzAYOLEwBASy8jAsKD3638Ghi//Q7kh9LIpX/8znT/EwBDKzcjApcbAEMzAwHDhGAMDk4kjA8NqoKLP5xkY1gIFje0YGBi/v/v2f/0yoJlAFSCBgAhGBgAfDihHi1Ng5QAAAABJRU5ErkJggg=="
+                    }
+                  }
+                }
+              }
+            },
+            "required": [
+              "article_eyecatch"
+            ]
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "アップロードした画像URLが返却されます"
+          }
+        }
+      }
+    },
+    "/api/v1/articles": {
+      "get": {
+        "summary": "ブログ記事一覧を取得します",
+        "tags": [
+          "Article"
+        ],
+        "consumes": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "Authorization",
+            "in": "header",
+            "type": "string"
+          },
+          {
+            "name": "identify",
+            "in": "query",
+            "type": "string"
+          },
+          {
+            "name": "keyword",
+            "in": "query",
+            "type": "string",
+            "required": false
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "記事一覧が返却されます",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "domain": {
+                  "type": "string"
+                },
+                "articles": {
+                  "type": "array",
+                  "items": {
+                    "type": "object",
+                    "properties": {
+                      "title": {
+                        "type": "string"
+                      },
+                      "body": {
+                        "type": "string",
+                        "x-nullable": true
+                      }
+                    }
+                  }
+                }
+              },
+              "required": [
+                "domain",
+                "articles"
+              ]
+            }
+          }
+        }
+      },
+      "post": {
+        "summary": "ブログ記事を作成します",
+        "tags": [
+          "Article"
+        ],
+        "consumes": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "Authorization",
+            "in": "header",
+            "type": "string"
+          },
+          {
+            "name": "identify",
+            "in": "query",
+            "type": "string",
+            "example": "testsite"
+          },
+          {
+            "name": "json_data",
+            "in": "body",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "article": {
+                  "type": "object",
+                  "properties": {
+                    "body": {
+                      "type": "string",
+                      "example": "<p>記事本文</p>"
+                    },
+                    "body_text": {
+                      "type": "string",
+                      "example": "記事本文"
+                    },
+                    "title": {
+                      "type": "string",
+                      "example": "記事タイトル"
+                    },
+                    "published": {
+                      "type": "boolean",
+                      "example": false
+                    },
+                    "is_careecon": {
+                      "type": "boolean",
+                      "example": false
+                    },
+                    "posted_at": {
+                      "type": "object",
+                      "properties": {
+                        "date": {
+                          "type": "string",
+                          "example": "2019-01-01"
+                        },
+                        "time": {
+                          "type": "string",
+                          "example": "01:01:01"
+                        }
+                      }
+                    },
+                    "article_eyecatch": {
+                      "type": "object",
+                      "properties": {
+                        "file": {
+                          "type": "string",
+                          "format": "byte",
+                          "example": "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAUAAAAFCAYAAACNbyblAAAABGdBTUEAALGPC/xhBQAAACBjSFJNAAB6JgAAgIQAAPoAAACA6AAAdTAAAOpgAAA6mAAAF3CculE8AAAACXBIWXMAAAsTAAALEwEAmpwYAAABWWlUWHRYTUw6Y29tLmFkb2JlLnhtcAAAAAAAPHg6eG1wbWV0YSB4bWxuczp4PSJhZG9iZTpuczptZXRhLyIgeDp4bXB0az0iWE1QIENvcmUgNS40LjAiPgogICA8cmRmOlJERiB4bWxuczpyZGY9Imh0dHA6Ly93d3cudzMub3JnLzE5OTkvMDIvMjItcmRmLXN5bnRheC1ucyMiPgogICAgICA8cmRmOkRlc2NyaXB0aW9uIHJkZjphYm91dD0iIgogICAgICAgICAgICB4bWxuczp0aWZmPSJodHRwOi8vbnMuYWRvYmUuY29tL3RpZmYvMS4wLyI+CiAgICAgICAgIDx0aWZmOk9yaWVudGF0aW9uPjE8L3RpZmY6T3JpZW50YXRpb24+CiAgICAgIDwvcmRmOkRlc2NyaXB0aW9uPgogICA8L3JkZjpSREY+CjwveDp4bXBtZXRhPgpMwidZAAAAaklEQVQIHWP89ubb/5UL/jNcOMzAYOLEwBASy8jAsKD3638Ghi//Q7kh9LIpX/8znT/EwBDKzcjApcbAEMzAwHDhGAMDk4kjA8NqoKLP5xkY1gIFje0YGBi/v/v2f/0yoJlAFSCBgAhGBgAfDihHi1Ng5QAAAABJRU5ErkJggg=="
+                        }
+                      }
+                    },
+                    "article_category": {
+                      "type": "integer"
+                    }
+                  }
+                }
+              }
+            },
+            "required": [
+              "article"
+            ]
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "作成された記事が返却されます"
+          },
+          "422": {
+            "description": "作成失敗が返却されます"
+          }
+        }
+      }
+    },
+    "/api/v1/articles/{id}": {
+      "get": {
+        "summary": "記事の詳細を取得します",
+        "tags": [
+          "Article"
+        ],
+        "consumes": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "Authorization",
+            "in": "header",
+            "type": "string"
+          },
+          {
+            "name": "identify",
+            "in": "query",
+            "type": "string"
+          },
+          {
+            "name": "id",
+            "in": "path",
+            "type": "string",
+            "required": true
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "記事詳細が返却されます",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "id": {
+                  "type": "integer"
+                }
+              },
+              "required": [
+                "id"
+              ]
+            }
+          },
+          "404": {
+            "description": "存在しない場合はエラーが返却されます"
+          }
+        }
+      },
+      "put": {
+        "summary": "記事を編集します",
+        "tags": [
+          "Article"
+        ],
+        "consumes": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "Authorization",
+            "in": "header",
+            "type": "string"
+          },
+          {
+            "name": "identify",
+            "in": "query",
+            "type": "string"
+          },
+          {
+            "name": "id",
+            "in": "path",
+            "type": "string",
+            "required": true
+          },
+          {
+            "name": "json_data",
+            "in": "body",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "article": {
+                  "type": "object",
+                  "properties": {
+                    "body": {
+                      "type": "string",
+                      "example": "<p>修正記事本文</p>"
+                    },
+                    "body_text": {
+                      "type": "string",
+                      "example": "修正記事本文"
+                    },
+                    "title": {
+                      "type": "string",
+                      "example": "修正記事タイトル"
+                    },
+                    "published": {
+                      "type": "boolean",
+                      "example": false
+                    },
+                    "is_careecon": {
+                      "type": "boolean",
+                      "example": false
+                    },
+                    "posted_at": {
+                      "type": "object",
+                      "properties": {
+                        "date": {
+                          "type": "string",
+                          "example": "2019-02-02"
+                        },
+                        "time": {
+                          "type": "string",
+                          "example": "02:02:02"
+                        }
+                      }
+                    },
+                    "article_eyecatch": {
+                      "type": "object",
+                      "properties": {
+                        "file": {
+                          "type": "string",
+                          "format": "byte",
+                          "example": "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAUAAAAFCAYAAACNbyblAAAABGdBTUEAALGPC/xhBQAAACBjSFJNAAB6JgAAgIQAAPoAAACA6AAAdTAAAOpgAAA6mAAAF3CculE8AAAACXBIWXMAAAsTAAALEwEAmpwYAAABWWlUWHRYTUw6Y29tLmFkb2JlLnhtcAAAAAAAPHg6eG1wbWV0YSB4bWxuczp4PSJhZG9iZTpuczptZXRhLyIgeDp4bXB0az0iWE1QIENvcmUgNS40LjAiPgogICA8cmRmOlJERiB4bWxuczpyZGY9Imh0dHA6Ly93d3cudzMub3JnLzE5OTkvMDIvMjItcmRmLXN5bnRheC1ucyMiPgogICAgICA8cmRmOkRlc2NyaXB0aW9uIHJkZjphYm91dD0iIgogICAgICAgICAgICB4bWxuczp0aWZmPSJodHRwOi8vbnMuYWRvYmUuY29tL3RpZmYvMS4wLyI+CiAgICAgICAgIDx0aWZmOk9yaWVudGF0aW9uPjE8L3RpZmY6T3JpZW50YXRpb24+CiAgICAgIDwvcmRmOkRlc2NyaXB0aW9uPgogICA8L3JkZjpSREY+CjwveDp4bXBtZXRhPgpMwidZAAAAaklEQVQIHWP89ubb/5UL/jNcOMzAYOLEwBASy8jAsKD3638Ghi//Q7kh9LIpX/8znT/EwBDKzcjApcbAEMzAwHDhGAMDk4kjA8NqoKLP5xkY1gIFje0YGBi/v/v2f/0yoJlAFSCBgAhGBgAfDihHi1Ng5QAAAABJRU5ErkJggg=="
+                        }
+                      }
+                    },
+                    "article_category": {
+                      "type": "integer"
+                    }
+                  }
+                }
+              }
+            },
+            "required": [
+              "title",
+              "body"
+            ]
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "編集した記事が返却されます"
+          },
+          "422": {
+            "description": "編集失敗が返却されます"
+          }
+        }
+      },
+      "delete": {
+        "summary": "記事を削除します",
+        "tags": [
+          "Article"
+        ],
+        "consumes": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "Authorization",
+            "in": "header",
+            "type": "string"
+          },
+          {
+            "name": "identify",
+            "in": "query",
+            "type": "string"
+          },
+          {
+            "name": "id",
+            "in": "path",
+            "type": "string",
+            "required": true
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "削除結果が返却されます"
+          },
+          "404": {
+            "description": "存在しないIDを指定した場合はエラーが返却されます"
+          }
+        }
+      }
+    },
+    "/api/v1/auth": {
+      "post": {
+        "summary": "ログイン認証をしてJWTトークンを取得します",
+        "tags": [
+          "Auth"
+        ],
+        "consumes": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "auth_params",
+            "in": "body",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "email": {
+                  "type": "string",
+                  "example": "demo@example.com"
+                },
+                "password": {
+                  "type": "string",
+                  "example": "password12345"
+                }
+              },
+              "required": [
+                "email",
+                "password"
+              ]
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "JWTが返却されます",
+            "examples": {
+              "application/json": {
+                "auth_token": "createdAuthTokenValueData"
+              }
+            }
+          },
+          "401": {
+            "description": "エラーが返却されます",
+            "examples": {
+              "application/json": {
+                "error": {
+                  "user_authentication": [
+                    "Invalid credentials"
+                  ]
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/v1/customers": {
+      "get": {
+        "summary": "eat顧客一覧を取得します",
+        "tags": [
+          "Customer"
+        ],
+        "consumes": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "Authorization",
+            "in": "header",
+            "type": "string"
+          },
+          {
+            "name": "identify",
+            "in": "query",
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "顧客一覧が返却されます",
+            "schema": {
+              "type": "array",
+              "items": {
+                "properties": {
+                  "id": {
+                    "type": "integer"
+                  },
+                  "email": {
+                    "type": "string"
+                  },
+                  "name": {
+                    "type": "string"
+                  }
+                },
+                "required": [
+                  "id",
+                  "email",
+                  "name"
+                ]
+              }
+            }
+          },
+          "401": {
+            "description": "正しくないトークンを渡した場合は弾かれます"
+          }
+        }
+      }
+    },
+    "/api/v1/customers/{id}": {
+      "get": {
+        "summary": "顧客の詳細を取得します",
+        "tags": [
+          "Customer"
+        ],
+        "consumes": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "Authorization",
+            "in": "header",
+            "type": "string"
+          },
+          {
+            "name": "identify",
+            "in": "query",
+            "type": "string"
+          },
+          {
+            "name": "id",
+            "in": "path",
+            "type": "string",
+            "required": true
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "顧客詳細が返却されます",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "id": {
+                  "type": "integer"
+                },
+                "email": {
+                  "type": "string"
+                },
+                "name": {
+                  "type": "string"
+                }
+              },
+              "required": [
+                "id",
+                "email",
+                "name"
+              ]
+            }
+          },
+          "401": {
+            "description": "正しくないトークンを渡した場合は弾かれます"
+          },
+          "404": {
+            "description": "詳細を見ることができないサイト or ユーザを要求したとき"
+          }
+        }
+      }
+    },
+    "/api/v1/inquiries/reads/{id}": {
+      "put": {
+        "summary": "既読フラグをtrueにします",
+        "tags": [
+          "Inquiry"
+        ],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "type": "integer",
+            "required": true
+          },
+          {
+            "name": "Authorization",
+            "in": "header",
+            "type": "string"
+          },
+          {
+            "name": "identify",
+            "in": "query",
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "204": {
+            "description": "204 No Content が返却されます"
+          },
+          "401": {
+            "description": "正しくないトークンを渡した場合は弾かれます"
+          },
+          "404": {
+            "description": "存在しないIDを指定すると404が返却されます"
+          }
+        }
+      }
+    },
+    "/api/v1/inquiries/{id}/replies": {
+      "post": {
+        "summary": "選択したお問い合わせに対する返信内容を送ります",
+        "tags": [
+          "Inquiry"
+        ],
+        "consumes": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "type": "integer",
+            "required": true
+          },
+          {
+            "name": "Authorization",
+            "in": "header",
+            "type": "string"
+          },
+          {
+            "name": "identify",
+            "in": "query",
+            "type": "string",
+            "example": "testsite"
+          },
+          {
+            "name": "reply",
+            "in": "body",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "subject": {
+                  "type": "string",
+                  "description": "タイトル"
+                },
+                "body": {
+                  "type": "string",
+                  "description": "本文"
+                }
+              },
+              "required": [
+                "subject",
+                "body"
+              ]
+            },
+            "required": [
+              "reply"
+            ]
+          }
+        ],
+        "responses": {
+          "204": {
+            "description": "204 No Content が返却されます"
+          },
+          "401": {
+            "description": "正しくないトークンを渡した場合は弾かれます"
+          },
+          "404": {
+            "description": "サイト指定が不正 or 存在しないIDを指定すると404が返却されます"
+          },
+          "422": {
+            "description": "作成失敗が返却されます"
+          }
+        }
+      }
+    },
+    "/api/v1/inquiries": {
+      "get": {
+        "summary": "お問い合わせの一覧を取得します",
+        "tags": [
+          "Inquiry"
+        ],
+        "consumes": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "Authorization",
+            "in": "header",
+            "type": "string"
+          },
+          {
+            "name": "identify",
+            "in": "query",
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "お問い合わせ一覧が返却されます",
+            "schema": {
+              "type": "array",
+              "items": {
+                "properties": {
+                  "id": {
+                    "type": "integer",
+                    "description": "ID"
+                  },
+                  "customer_name": {
+                    "type": "string",
+                    "description": "お問い合わせユーザー名"
+                  },
+                  "body": {
+                    "type": "string",
+                    "description": "本文"
+                  },
+                  "status": {
+                    "type": "string",
+                    "enum": [
+                      "unstarted",
+                      "started",
+                      "finished"
+                    ],
+                    "description": "対応状況 unstarted: 未対応 started: 対応中 finished: 対応済"
+                  },
+                  "is_read": {
+                    "type": "boolean",
+                    "description": "既読か?"
+                  },
+                  "is_reply": {
+                    "type": "boolean",
+                    "description": "返信済みか?"
+                  },
+                  "is_customer_deleted": {
+                    "type": "boolean",
+                    "description": "お問い合わせユーザが削除されたか?"
+                  },
+                  "created_at": {
+                    "type": "string",
+                    "format": "date-time",
+                    "description": "お問い合わせ日時"
+                  }
+                },
+                "required": [
+                  "id",
+                  "status",
+                  "is_read",
+                  "is_reply",
+                  "is_customer_deleted",
+                  "created_at"
+                ]
+              }
+            }
+          },
+          "401": {
+            "description": "正しくないトークンを渡した場合は弾かれます"
+          },
+          "404": {
+            "description": "不正なサイトを要求したとき"
+          }
+        }
+      }
+    },
+    "/api/v1/inquiries/{id}": {
+      "get": {
+        "summary": "お問い合わせの詳細を取得します",
+        "tags": [
+          "Inquiry"
+        ],
+        "consumes": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "Authorization",
+            "in": "header",
+            "type": "string"
+          },
+          {
+            "name": "identify",
+            "in": "query",
+            "type": "string"
+          },
+          {
+            "name": "id",
+            "in": "path",
+            "type": "string",
+            "required": true
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "お問い合わせ詳細が返却されます",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "id": {
+                  "type": "integer",
+                  "description": "お問い合わせID"
+                },
+                "customer_id": {
+                  "type": "integer",
+                  "description": "お問い合わせユーザID"
+                },
+                "customer_name": {
+                  "type": "string",
+                  "description": "お問い合わせユーザ名"
+                },
+                "inquiry_email": {
+                  "type": "string",
+                  "format": "email",
+                  "description": "お問い合わせ元email"
+                },
+                "site_contact_email": {
+                  "type": "string",
+                  "format": "email",
+                  "description": "お問い合わせ用メールアドレス"
+                },
+                "body": {
+                  "type": "string",
+                  "description": "お問い合わせ本文"
+                },
+                "is_customer_deleted": {
+                  "type": "boolean",
+                  "description": "お問い合わせユーザが削除されたか?"
+                },
+                "created_at": {
+                  "type": "string",
+                  "format": "date-time",
+                  "description": "お問い合わせ日時"
+                },
+                "replies": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/definitions/reply"
+                  },
+                  "description": "返信"
+                }
+              },
+              "required": [
+                "id",
+                "body",
+                "is_customer_deleted",
+                "inquiry_email",
+                "site_contact_email",
+                "created_at"
+              ]
+            }
+          },
+          "401": {
+            "description": "正しくないトークンを渡した場合は弾かれます"
+          },
+          "404": {
+            "description": "詳細を見ることができないサイト or お問い合わせを要求したとき"
+          }
+        }
+      }
+    },
+    "/api/v1/notifications": {
+      "get": {
+        "summary": "お知らせ一覧を取得します",
+        "tags": [
+          "Notifications"
+        ],
+        "consumes": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "Authorization",
+            "in": "header",
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "お知らせが取得できた場合",
+            "schema": {
+              "type": "array",
+              "items": {
+                "properties": {
+                  "id": {
+                    "type": "integer"
+                  },
+                  "category_name": {
+                    "type": "string"
+                  },
+                  "title": {
+                    "type": "string"
+                  },
+                  "body": {
+                    "type": "string"
+                  },
+                  "published": {
+                    "type": "boolean"
+                  }
+                },
+                "required": [
+                  "id",
+                  "category_name",
+                  "title",
+                  "body",
+                  "published"
+                ]
+              }
+            }
+          },
+          "401": {
+            "description": "正しくないトークンを渡した場合は弾かれます"
+          }
+        }
+      }
+    },
+    "/api/v1/notifications/{id}": {
+      "get": {
+        "summary": "お知らせの詳細を取得します",
+        "tags": [
+          "Notifications"
+        ],
+        "consumes": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "Authorization",
+            "in": "header",
+            "type": "string"
+          },
+          {
+            "name": "id",
+            "in": "path",
+            "type": "string",
+            "required": true
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "お知らせ詳細が返却されます",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "id": {
+                  "type": "integer"
+                },
+                "category_name": {
+                  "type": "string"
+                },
+                "title": {
+                  "type": "string"
+                },
+                "body": {
+                  "type": "string"
+                },
+                "published": {
+                  "type": "boolean"
+                }
+              },
+              "required": [
+                "id",
+                "category_name",
+                "title",
+                "body",
+                "published"
+              ]
+            }
+          },
+          "401": {
+            "description": "正しくないトークンを渡した場合は弾かれます"
+          },
+          "404": {
+            "description": "存在しないお知らせ詳細を要求したとき"
+          }
+        }
+      }
+    },
+    "/api/v1/stats": {
+      "get": {
+        "summary": "通知件数を取得します。",
+        "tags": [
+          "Notification"
+        ],
+        "parameters": [
+          {
+            "name": "Authorization",
+            "in": "header",
+            "type": "string"
+          },
+          {
+            "name": "identify",
+            "in": "query",
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "statsのカウントが返却される",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "unread_notification_count": {
+                  "type": "integer"
+                },
+                "unread_inquiry_count": {
+                  "type": "integer"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "正しくないトークンを渡した場合は弾かれます"
+          }
+        }
+      }
+    }
+  },
+  "definitions": {
+    "reply": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "integer",
+          "description": "ID"
+        },
+        "body": {
+          "type": "string",
+          "description": "本文"
+        },
+        "is_customer": {
+          "type": "boolean",
+          "description": "お問い合わせユーザの返信か?"
+        },
+        "created_at": {
+          "type": "string",
+          "format": "date-time",
+          "description": "返信日時"
+        }
+      },
+      "required": [
+        "id",
+        "body",
+        "is_customer",
+        "created_at"
+      ]
+    }
+  }
+}
