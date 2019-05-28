@@ -14,12 +14,14 @@
         "consumes": [
           "application/json"
         ],
-        "parameters": [
+        "security": [
           {
-            "name": "Authorization",
-            "in": "header",
-            "type": "string"
-          },
+            "tokenAuth": [
+
+            ]
+          }
+        ],
+        "parameters": [
           {
             "name": "identify",
             "in": "query",
@@ -59,12 +61,14 @@
         "consumes": [
           "application/json"
         ],
-        "parameters": [
+        "security": [
           {
-            "name": "Authorization",
-            "in": "header",
-            "type": "string"
-          },
+            "tokenAuth": [
+
+            ]
+          }
+        ],
+        "parameters": [
           {
             "name": "identify",
             "in": "query",
@@ -105,12 +109,14 @@
         "consumes": [
           "application/json"
         ],
-        "parameters": [
+        "security": [
           {
-            "name": "Authorization",
-            "in": "header",
-            "type": "string"
-          },
+            "tokenAuth": [
+
+            ]
+          }
+        ],
+        "parameters": [
           {
             "name": "identify",
             "in": "query",
@@ -155,12 +161,14 @@
         "consumes": [
           "application/json"
         ],
-        "parameters": [
+        "security": [
           {
-            "name": "Authorization",
-            "in": "header",
-            "type": "string"
-          },
+            "tokenAuth": [
+
+            ]
+          }
+        ],
+        "parameters": [
           {
             "name": "identify",
             "in": "query",
@@ -190,12 +198,14 @@
         "consumes": [
           "application/json"
         ],
-        "parameters": [
+        "security": [
           {
-            "name": "Authorization",
-            "in": "header",
-            "type": "string"
-          },
+            "tokenAuth": [
+
+            ]
+          }
+        ],
+        "parameters": [
           {
             "name": "identify",
             "in": "query",
@@ -236,12 +246,14 @@
         "consumes": [
           "application/json"
         ],
-        "parameters": [
+        "security": [
           {
-            "name": "Authorization",
-            "in": "header",
-            "type": "string"
-          },
+            "tokenAuth": [
+
+            ]
+          }
+        ],
+        "parameters": [
           {
             "name": "identify",
             "in": "query",
@@ -287,12 +299,14 @@
         "consumes": [
           "application/json"
         ],
-        "parameters": [
+        "security": [
           {
-            "name": "Authorization",
-            "in": "header",
-            "type": "string"
-          },
+            "tokenAuth": [
+
+            ]
+          }
+        ],
+        "parameters": [
           {
             "name": "identify",
             "in": "query",
@@ -325,6 +339,10 @@
                       "body": {
                         "type": "string",
                         "x-nullable": true
+                      },
+                      "body_text": {
+                        "type": "string",
+                        "x-nullable": true
                       }
                     }
                   }
@@ -346,12 +364,14 @@
         "consumes": [
           "application/json"
         ],
-        "parameters": [
+        "security": [
           {
-            "name": "Authorization",
-            "in": "header",
-            "type": "string"
-          },
+            "tokenAuth": [
+
+            ]
+          }
+        ],
+        "parameters": [
           {
             "name": "identify",
             "in": "query",
@@ -411,7 +431,12 @@
                       }
                     },
                     "article_category": {
-                      "type": "integer"
+                      "type": "object",
+                      "properties": {
+                        "id": {
+                          "type": "integer"
+                        }
+                      }
                     }
                   }
                 }
@@ -441,12 +466,14 @@
         "consumes": [
           "application/json"
         ],
-        "parameters": [
+        "security": [
           {
-            "name": "Authorization",
-            "in": "header",
-            "type": "string"
-          },
+            "tokenAuth": [
+
+            ]
+          }
+        ],
+        "parameters": [
           {
             "name": "identify",
             "in": "query",
@@ -487,12 +514,14 @@
         "consumes": [
           "application/json"
         ],
-        "parameters": [
+        "security": [
           {
-            "name": "Authorization",
-            "in": "header",
-            "type": "string"
-          },
+            "tokenAuth": [
+
+            ]
+          }
+        ],
+        "parameters": [
           {
             "name": "identify",
             "in": "query",
@@ -557,7 +586,12 @@
                       }
                     },
                     "article_category": {
-                      "type": "integer"
+                      "type": "object",
+                      "properties": {
+                        "id": {
+                          "type": "integer"
+                        }
+                      }
                     }
                   }
                 }
@@ -586,12 +620,14 @@
         "consumes": [
           "application/json"
         ],
-        "parameters": [
+        "security": [
           {
-            "name": "Authorization",
-            "in": "header",
-            "type": "string"
-          },
+            "tokenAuth": [
+
+            ]
+          }
+        ],
+        "parameters": [
           {
             "name": "identify",
             "in": "query",
@@ -679,12 +715,14 @@
         "consumes": [
           "application/json"
         ],
-        "parameters": [
+        "security": [
           {
-            "name": "Authorization",
-            "in": "header",
-            "type": "string"
-          },
+            "tokenAuth": [
+
+            ]
+          }
+        ],
+        "parameters": [
           {
             "name": "identify",
             "in": "query",
@@ -715,9 +753,6 @@
                 ]
               }
             }
-          },
-          "401": {
-            "description": "正しくないトークンを渡した場合は弾かれます"
           }
         }
       }
@@ -731,12 +766,14 @@
         "consumes": [
           "application/json"
         ],
-        "parameters": [
+        "security": [
           {
-            "name": "Authorization",
-            "in": "header",
-            "type": "string"
-          },
+            "tokenAuth": [
+
+            ]
+          }
+        ],
+        "parameters": [
           {
             "name": "identify",
             "in": "query",
@@ -772,9 +809,6 @@
               ]
             }
           },
-          "401": {
-            "description": "正しくないトークンを渡した場合は弾かれます"
-          },
           "404": {
             "description": "詳細を見ることができないサイト or ユーザを要求したとき"
           }
@@ -786,6 +820,16 @@
         "summary": "既読フラグをtrueにします",
         "tags": [
           "Inquiry"
+        ],
+        "consumes": [
+          "application/json"
+        ],
+        "security": [
+          {
+            "tokenAuth": [
+
+            ]
+          }
         ],
         "parameters": [
           {
@@ -809,16 +853,13 @@
           "204": {
             "description": "204 No Content が返却されます"
           },
-          "401": {
-            "description": "正しくないトークンを渡した場合は弾かれます"
-          },
           "404": {
             "description": "存在しないIDを指定すると404が返却されます"
           }
         }
       }
     },
-    "/api/v1/inquiries/{id}/replies": {
+    "/api/v1/inquiries/replies": {
       "post": {
         "summary": "選択したお問い合わせに対する返信内容を送ります",
         "tags": [
@@ -827,13 +868,14 @@
         "consumes": [
           "application/json"
         ],
-        "parameters": [
+        "security": [
           {
-            "name": "id",
-            "in": "path",
-            "type": "integer",
-            "required": true
-          },
+            "tokenAuth": [
+
+            ]
+          }
+        ],
+        "parameters": [
           {
             "name": "Authorization",
             "in": "header",
@@ -851,6 +893,10 @@
             "schema": {
               "type": "object",
               "properties": {
+                "inquiry_id": {
+                  "type": "integer",
+                  "description": "お問い合わせID"
+                },
                 "subject": {
                   "type": "string",
                   "description": "タイトル"
@@ -861,6 +907,7 @@
                 }
               },
               "required": [
+                "inquiry_id",
                 "subject",
                 "body"
               ]
@@ -1253,6 +1300,14 @@
         "is_customer",
         "created_at"
       ]
+    }
+  },
+  "produces": "application/json",
+  "securityDefinitions": {
+    "tokenAuth": {
+      "type": "apiKey",
+      "name": "Authorization",
+      "in": "header"
     }
   }
 }
